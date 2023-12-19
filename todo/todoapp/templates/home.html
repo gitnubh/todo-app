@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="banner"><h1 class="display-1 text-center">T o D o</h1></div>
+    </div>
+    <div class="container text-center">
+        <form  method="post" class="p-3 shadow">
+            {% csrf_token %}
+            <div class="row g-2">
+                <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter the task">
+            </div>
+            <div class="row g-2">
+                <input class="form-control" type="int" name="priority" placeholder="Enter the priority of the said task">
+                <div class="form-text"> Enter a number from 1 - 10</div>
+            </div>
+            <div class="row g-2">
+                <input class="form-control" type="date" name="date" placeholder="Enter the deadline">
+            </div>
+            <input type="submit" class="btn btn-success">
+        </form>
+    </div>
+    <div class="container-fluid">
+        <h1 class="text-center">Tasks to be Completed</h1>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            {%for i in task%}
+            <div class="col-3 g-5">
+                <div class="col">
+                    <div class="card shadow">
+                        <p class="display-5 card-title">{{i.name}}</p>
+                        <p class="card-subtitle display-6"><b>{{i.priority}}</b></p>
+                        <p class="card-subtitle lead"><b>{{i.date}}</b></p>
+                        <a class="btn btn-outline-primary" href="{% url 'done' i.id %}" style="width: 30%; position: relative;left: 35%;">Done</a> 
+                        <br>
+                        <a class="btn btn-outline-warning" href="{% url 'edit' i.id %}" style="width: 30%; position: relative;left: 35%;">Edit</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

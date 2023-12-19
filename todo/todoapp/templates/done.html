@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid text-center" style="position: absolute;top: 40%;">
+    <form  method="post">
+        {% csrf_token %}
+        <h3 class="display-3">Are you sure you completed the task and want to remove it?</h3>
+      <input type="submit" class="btn btn-outline-danger">
+    </form>
+</div>
+{% endblock %}
